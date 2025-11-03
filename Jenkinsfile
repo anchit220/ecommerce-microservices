@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/anchit220/ecommerce-microservices.git'
+                git 'https://github.com/anchit220/ecommerce-microservices.git'
             }
         }
 
