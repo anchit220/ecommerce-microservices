@@ -8,11 +8,7 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/anchit220/ecommerce-microservices.git'
-            }
-        }
+        
 
         stage('Build & Push Images') {
             parallel {
