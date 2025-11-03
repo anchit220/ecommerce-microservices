@@ -1,9 +1,15 @@
 pipeline {
     agent any
 
+    environment {
+        DOCKERHUB = 'anchitpatil'
+    }
+
     stages {
+
         stage('Checkout Code') {
             steps {
+                // This makes Jenkins clone your GitHub repo into /var/jenkins_home/workspace/ccd
                 git branch: 'main', url: 'https://github.com/anchit220/ecommerce-microservices.git'
             }
         }
@@ -39,6 +45,15 @@ pipeline {
                 kubectl apply -f k8s/
                 '''
             }
+        }
+    }
+
+    post {
+        failure {
+            echo '❌ Build Failed!'
+        }
+        success {
+            echo '✅ Build and Deploy Successful!'
         }
     }
 }
