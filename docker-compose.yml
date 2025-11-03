@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  auth:
+    build: ./auth-service
+    ports:
+      - '3001:3001'
+  product:
+    build: ./product-service
+    ports:
+      - '3002:3002'
+  cart:
+    build: ./cart-service
+    ports:
+      - '3003:3003'
+  order:
+    build: ./order-service
+    ports:
+      - '3004:3004'

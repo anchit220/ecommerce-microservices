@@ -1,0 +1,19 @@
+pipeline {
+  agent any
+  environment {
+    DOCKERHUB = "${env.DOCKERHUB}"
+  }
+  stages {
+    stage('Checkout') { steps { checkout scm } }
+    stage('Build & Push All') {
+      steps {
+        sh 'chmod +x scripts/build_and_push.sh && ./scripts/build_and_push.sh'
+      }
+    }
+    stage('Deploy to K8s') {
+      steps {
+        sh 'kubectl apply -f k8s/'
+      }
+    }
+  }
+}
